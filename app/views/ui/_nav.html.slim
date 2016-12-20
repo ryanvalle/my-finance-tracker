@@ -1,0 +1,9 @@
+nav
+	span.nav-wrapper
+		header Finance Tracker App
+		p.secondary-text A financial tracking application to help track spending, budgeting, expenses, and earnings.
+		- if @authenticated
+			ul.icons
+				- @navigation.each do |nav|
+					li
+						=link_to '', nav, class: nav, data: { title: nav }

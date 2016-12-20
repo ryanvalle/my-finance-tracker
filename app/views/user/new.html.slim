@@ -1,0 +1,18 @@
+.card
+	.card-header
+		h3 Login
+	.card-body#login
+		= form_for @user, url: user_create_path do |f|
+			.form-group
+				= f.label :user
+				= f.text_field :user
+			.form-group
+				= f.label :password
+				= f.password_field :password
+			.form-group
+				= f.label :password_confirmation
+				= f.password_field :password_confirmation
+			.form-group
+				= f.submit :submit, value: 'Create Account'
+.subcard.align-right
+	= link_to 'Already have an account', user_login_path

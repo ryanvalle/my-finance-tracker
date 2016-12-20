@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  payee_id: 
+  description: MyString
+  amount: 
+  type_id: 
+  income: 
+  category_id: 
+
+two:
+  user_id: 
+  payee_id: 
+  description: MyString
+  amount: 
+  type_id: 
+  income: 
+  category_id: 

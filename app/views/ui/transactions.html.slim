@@ -1,0 +1,64 @@
+h1 View Transactions
+
+.card
+	.card-header
+		h3 Filters
+	.card-body#filtering
+		= form_for :date_filtering, remote: true do
+			.form-group.inline
+				= select_tag :month_selected, options_for_select(@months, selected: @month_selected)
+			.form-group.inline
+				= text_field_tag :year_selected, @year_selected > 0 ? @year_selected : nil, placeholder: "Year" , type: 'number'
+
+.card
+	.card-header
+		h3 Statistics
+	.card-body.stats
+		.grapher
+			.split
+				.info
+					span.key Expense
+					span.value = format_currency(@stats[:expense].to_i)
+				.expense style="width: #{@graph[:expense]}%"
+			.split
+				.info
+					span.key Income
+					span.value = format_currency(@stats[:income].to_i)
+				.income style="width: #{@graph[:income]}%"
+			.total
+				.info
+					span.key Total
+					span.value = format_currency(@stats[:total].to_i)
+
+
+
+table.transactions-table
+	thead
+		tr
+			th.date Date
+			th.payee Payee
+			th.description Description
+			th.category	Category
+			th.amount Amount
+	tbody
+		- @transactions.each do |tns|
+			tr
+				td.date 
+					- if tns.transaction_on.present?
+						=tns.transaction_on.strftime('%m-%d-%Y @ %H:%M')
+				td.payee =tns.payee.try(:payee).try(:titleize)
+				td.description =tns.description
+				td.category 
+					- if tns.category.category
+						span class="#{tns.category.category}" =tns.category.category
+				td.amount class="#{tns.income ? 'income' : 'expense'}" =format_currency(tns.amount)
+				
+javascript:
+	$(document).ready(function() {
+		$('#filtering form').on('ajax:beforeSend', function(e) {
+			e.preventDefault();
+			var $el = $(this);
+			location.href = location.pathname + "?month=" + $el.find('#month_selected').val() + "&year=" + $el.find('#year_selected').val()
+			return false;
+		})
+	})

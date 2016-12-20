@@ -1,0 +1,41 @@
+@import 'colors';
+
+.card {
+	display: block;
+	width: 100%;
+	border: 1px solid $divider;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden;
+	margin: 10px auto;
+	.card-header, .card-body {
+		padding: 5px 10px;
+	}
+	.card-header {
+		background: $light-primary;
+		padding: 5px 10px;
+		* { padding: 0; margin: 0; }
+	}
+
+	.stats {
+		.info {
+			display: block;
+			padding: 2px 0;
+			.key, .value {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.key {
+				color: $text-secondary;
+				width: 50px;
+				font-size: 12px;
+				text-align: right;
+				padding: 0 5px 0 0;
+				&:after { content: ':'; }
+			}
+			.value:before {
+				content: '$'
+			}
+		}
+	}
+
+}

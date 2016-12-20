@@ -1,0 +1,34 @@
+@import 'colors';
+
+.grapher {
+	width: 100%;
+	position: relative;
+	.split {
+		width: 50%;
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+		border: 1px solid $divider;
+		&:first-child{
+			border-right: 2px solid $divider;
+		}
+		&:last-child {
+			border-left: 2px solid $divider;
+		}
+	}
+	.income, .expense {
+		height: 100%;
+		position: relative;
+		height: 40px;
+	}
+	.income {
+		background: $light-primary;
+		left: 0;
+	}
+	.expense {
+		float: right;
+		background: $accent;
+		right: 0;
+	}
+	.total {text-align: center}
+}

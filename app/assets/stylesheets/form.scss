@@ -1,0 +1,84 @@
+@import 'colors';
+
+.status {
+	font-weight: 700;
+	display: block;
+	padding: 5px;
+	margin-bottom: 5px;
+	.warning, .success, .danger { display: block; border-bottom: 1px solid $divider; }
+	.warning { color: $light-primary; }
+	.success { color: $dark-primary; }
+	.danger { color: $accent; }
+}
+form {
+	max-width: 410px;
+	width: 100%;
+	margin: 0 auto;
+	.form-group {
+		margin: 5px;
+		* {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		label {
+			width: 25%;
+			text-align: right;
+			padding: 5px 10px
+		}
+		select, input, .form-group {
+			font-size: 14px;
+			padding: 5px;
+			width: 75%;
+			height: 24px;
+			margin: 0;
+			&[type="submit"] {
+				background: $light-primary;
+				display: block;
+				height: 30px;
+				text-align: center;
+				border: 0;
+				font-weight: 700;
+				color: $text-primary;
+				float: right;
+				margin: 0 0 20px;
+			}
+		}
+		select {
+			display: block;
+			border: 1px solid $divider;
+		}
+		.hints {
+			width: 75%;
+			margin: 0 0 0 25%;
+			font-size: 12px;
+			color: $text-secondary;
+			display: none;
+		}
+	}
+}
+
+#filtering form {
+	width: 100%;
+	max-width: 100%;
+	select, input { width: 200px; }
+}
+
+@media screen and (max-width: 400px) {
+	form {
+		max-width: 100%;
+		.form-group {
+			label {
+				display: block;
+				font-size: 12px;
+				margin: 15px 0 0 0;
+				text-align: left;
+				padding: 0;
+				color: $divider;
+			}
+			label, input, select {
+				display: block;
+				width: 100%;
+			}
+		}
+	}	
+}

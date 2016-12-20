@@ -1,0 +1,109 @@
+@import 'colors';
+
+$navigation: "transactions", "bills", "budgets", "analytics", "add";
+nav {
+	border-top: 5px solid $dark-primary;
+	background: $light-primary;
+	padding: 50px 20px;
+	text-align: center;
+	position: relative;
+	header{
+		font-size: 2em;
+		font-weight: 700;
+		padding: 0;
+		margin: 0;
+		line-height: 1.2em;
+	}
+	ul.icons {
+		position: absolute;
+		left: 50%;
+		padding: 0;
+		transform: translateX(-50%);
+		width: 100%;
+		white-space: nowrap;
+		li {
+			list-style: none;
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0 7px;
+		}
+		a{
+			display: block;
+			background: $accent;
+			width: 60px;
+			height: 60px;
+			border-radius: 30px;
+			border: none;
+			box-shadow: 1px 2px 2px $divider;
+			background-size: 30px;
+			background-position: center;
+			background-repeat: no-repeat;
+			transition: transform 300ms;
+			text-decoration: none;
+			position: relative;
+			@each $nav in $navigation {
+				&.#{$nav} { background-image: image-url('icons/#{$nav}.png'); }
+			}
+			&:after {
+				content: attr(data-title);
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%) scale(0);
+				text-transform: capitalize;
+				padding: 2px 7px;
+				bottom: -10px;
+				opacity: 1;
+				z-index: -1;
+				color: $bg-text-primary;
+				background: $dark-primary;
+				transition: all 200ms;
+				font-size: 0.6em;
+			}
+			&:hover{
+				transform: scale(1.1);
+				&:after {
+					bottom: -20px;
+					opacity: 1;
+					transform: translateX(-50%) scale(1);
+				}
+			}
+		}
+	} 
+
+}
+.ui_home nav {
+	height: 100%;
+	header { font-size: 4em }
+	.nav-wrapper {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-100%);
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	nav {
+		padding: 10px 20px;
+		ul.icons {
+			position: relative;
+			padding: 0;
+			margin-bottom: 0;
+			white-space: normal;
+			li {
+				margin: 0 7px 15px;
+			}
+			a {
+				width: 40px;
+				height: 40px;
+				background-size: 20px;
+				&:hover{
+					&:after {
+						bottom: -10px;
+					}
+				}
+			}
+		}
+	}
+}

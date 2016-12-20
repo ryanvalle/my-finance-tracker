@@ -1,0 +1,19 @@
+$dark-primary: #0288D1;
+$default-primary: #03A9F4;
+$light-primary: #B3E5FC;
+$bg-text-primary: #FFF;
+$text-primary: #212121;
+$text-secondary: #757575;
+$accent: #FF9800;
+$divider: #BDBDBD;
+$divider-light: #ECECEC;
+
+.dark-primary-color    { background: $dark-primary; }
+.default-primary-color { background: $default-primary; }
+.light-primary-color   { background: $light-primary; }
+.text-primary-color    { color: $bg-text-primary; }
+.accent-color          { background: $accent; }
+.primary-text					 { color: $text-primary; }
+.secondary-text				 { color: $text-secondary; }
+.divider-color         { border-color: $divider; }
+

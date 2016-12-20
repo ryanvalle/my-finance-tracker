@@ -1,0 +1,69 @@
+h1 Add Transaction
+
+.card
+	.card-header
+		h3 Transaction Add
+	.card-body
+		span.status
+		= form_for @add_transaction, remote: true do |f|
+			= f.text_field :user_id, value: @user.id, type: 'hidden'
+			.form-group
+				= f.label :payee
+				= f.text_field :payee, class: 'form-control lazy-search', data: {queries: @payees }, autocomplete: 'off'
+				span.hints
+			.form-group
+				= f.label :description
+				= f.text_field :description, class: 'form-control'
+			.form-group
+				= f.label :amount
+				= f.text_field :amount, class: 'form-control', type: :number, step: 'any'
+			.form-group
+				= f.label :income, 'Was Income?'
+				= f.check_box :income, class: 'form-control'
+			.form-group
+				= f.label :category
+				= f.text_field :category, class: 'form-control lazy-search', data: {queries: @categories }, autocomplete: 'off'
+				span.hints
+			.form-group
+				= f.label :budget
+				= f.text_field :budget, class: 'form-control lazy-search', data: {queries: @budgets }, autocomplete: 'off'
+				span.hints
+			.form-group
+				= f.label :transaction_on
+				= f.text_field :transaction_on, class: 'form-control', type: 'datetime-local', value: @timenow
+			.form-group
+				= f.submit :submit
+
+h2 Recent Transactions
+table.transactions-table
+	thead
+		tr
+			th.date Date
+			th.payee Payee
+			th.description Description
+			th.amount Amount
+	tbody
+		- @transactions.each do |tns|
+			tr
+				td.date 
+					- if tns.transaction_on.present?
+						=tns.transaction_on.strftime('%m-%d-%Y @ %H:%M')
+				td.payee =tns.payee.try(:payee).try(:titleize)
+				td.description =tns.description
+				td.amount class="#{tns.income ? 'income' : 'expense'}" ="%.2f" % [(tns.amount).round / 100.0]
+				
+javascript:
+	$(document).ready(function() {
+		$('form').on('ajax:beforeSend', function(e) {
+			$('span.status').html('<span class="warning">Status: Submitting</span>')
+		})
+		$('form').on('ajax:success', function(e) {
+			$('span.status').html('<span class="success">Status: Saved</span>');
+			$(this).trigger('reset');
+		})
+		$('form').on('ajax:error', function(e) {
+			$('span.status').html('<span class="danger">Status: Failed to save.</span>')
+		})
+	})
+
+

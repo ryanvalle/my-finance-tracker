@@ -1,0 +1,55 @@
+@import 'colors';
+
+table.transactions-table {
+	width: 100%;
+	border-spacing: 0;
+	thead {
+		border-bottom: 1px solid $divider;
+		background: $dark-primary;
+	}
+	td, th { 
+		padding: 5px; 
+		text-align: center;
+		border: 0;
+	}
+	tbody tr {
+		background: #fff;
+		transition: background 200ms;
+		font-size: 14px;
+		font-weight: 300;
+		&:nth-child(odd){
+			background: $divider-light;
+		}
+		&:hover { background: $light-primary }
+	}
+	.date { width: 150px; }
+	.payee { width: 100px; }
+	.amount { width: 100px; }
+	.category {
+		width: 75px;
+		span {
+			padding: 2px 10px;
+			border: 1px solid $divider;
+			border-radius: 25px;
+			font-size: 10px;
+			font-weight: 300;
+		}
+	}
+	td.amount {
+		text-align: right;
+		&.income {
+			color: $dark-primary;
+			&:before {
+				content: '+ $';
+				margin: 0 2px 0 0;
+			}
+		}
+		&.expense {
+			color: $accent;
+			&:before {
+				content: '- $';
+				margin: 0 2px 0 0;
+			}
+		}
+	}
+}
