@@ -23,6 +23,7 @@ class UserController < ApplicationController
 	def create
 		user = User.new(user_params)
 		cookie = SecureRandom.hex(12)
+		user['base_fund'] = (user_params['base_fund'].to_f * 100).ceil
 		if user.save
 			create_session(user)
 			redirect_to ui_trans_path
@@ -34,7 +35,7 @@ class UserController < ApplicationController
 
 	private
 	def user_params
-		params.require(:user).permit(:user, :password, :password_confirmation)
+		params.require(:user).permit(:user, :password, :password_confirmation, :base_fund)
 	end
 
 	def create_session(user)

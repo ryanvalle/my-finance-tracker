@@ -12,14 +12,16 @@ class ApplicationController < ActionController::Base
       redirect_to user_login_path
     else
       user = User.find_by_id(session[:current_user])
-      if user.cookie == cookies[:user]
+      if user && user.cookie == cookies[:user]
         @authenticated = true
         @user = user
       else
         session[:current_user] = nil
         cookies[:user] = nil
-        user.cookie = nil
-        user.save
+        if user
+          user.cookie = nil
+          user.save
+        end
         flash[:notice] = "Logged out of session..."
         redirect_to user_login_path
       end

@@ -13,6 +13,9 @@
 				= f.label :password_confirmation
 				= f.password_field :password_confirmation
 			.form-group
+				= f.label :base_fund
+				= f.text_field :base_fund, class: 'form-control', type: :number, step: 'any'
+			.form-group
 				= f.submit :submit, value: 'Create Account'
 .subcard.align-right
 	= link_to 'Already have an account', user_login_path

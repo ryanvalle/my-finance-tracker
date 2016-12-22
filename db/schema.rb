@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20161219062217) do
     t.string   "user",            limit: 255
     t.string   "password_digest", limit: 255
     t.string   "cookie",          limit: 255
+    t.integer  "base_fund",       limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
